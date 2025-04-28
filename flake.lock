@@ -46,11 +46,11 @@
         "nixvimFlake": "nixvimFlake"
       },
       "locked": {
-        "lastModified": 1745861981,
-        "narHash": "sha256-nF7U9x8+uJAKgrx3ZASRe1A5qpvkILoMMuWmYaMAxdg=",
+        "lastModified": 1745863713,
+        "narHash": "sha256-yAF0d0awBMQZtR9uLrj9VSZq3Q/Mf5zVe+MttFINs4s=",
         "owner": "nrs-status",
         "repo": "frontArmToPlane",
-        "rev": "2055404e57969678602539eeaa587ca64e72bb9f",
+        "rev": "ac266b880bd4da9ccfe7d5824b238384398b8211",
         "type": "github"
       },
       "original": {
