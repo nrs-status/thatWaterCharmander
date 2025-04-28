@@ -7,8 +7,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-  shared.environment.systemPackages = with inputs.pkgs; [
-    pavucontrol
-    pulseaudio
-  ];
+  shared = {
+    pulseaudio.enable = false;
+    environment.systemPackages = with inputs.pkgs; [
+      pavucontrol
+      pulseaudio
+    ];
+  };
 }

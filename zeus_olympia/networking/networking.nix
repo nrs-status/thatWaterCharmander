@@ -1,7 +1,7 @@
 { inputs }:
 {
   networking = {
-    hostName = inputs.pkgs.lib.mkDefault "wranHearst";
+    hostName = inputs.pkgslib.mkDefault "wranHearst";
   };
 
   services.openssh.enable = true;

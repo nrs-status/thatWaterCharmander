@@ -1,3 +1,4 @@
+{ ... }:
 {
   nix = {
     gc = {
@@ -13,7 +14,7 @@
         "https://cache.iog.io" #binary cache for haskell.nix
         "https://nix-community.cachix.org"
       ];
-      trusted-public-keys = "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" #binary cache for haskell.nix
+      trusted-public-keys = "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="; #binary cache for haskell.nix
     };
     extraOptions = ''
       experimental-features = nix-command flakes

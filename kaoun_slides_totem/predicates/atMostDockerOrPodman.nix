@@ -8,7 +8,7 @@ in rec {
   predName = "atMostDockerOrPodman";
   function = modulesAttrs: (hasPath dockerPath modulesAttrs) && (hasPath podmanPath modulesAttrs);
   handler = { target, type }:
-    if function target then 
+    if !(function target) then 
       target
     else
       throw ((tclib.stdTcError { inherit type predName; }) + "; add either virtualisation.docker or virtualisation.podman but not both");
