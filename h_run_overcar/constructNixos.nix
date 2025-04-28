@@ -1,9 +1,9 @@
 { inputs, activateDebug ? false }:
-{ modulesAttrs }:
+{ selectedModules }:
 with inputs;
 with builtins;
-let total = {
-  toList = map (moduleName: { ${moduleName} = modulesAttrs.${moduleName}}) (attrNames modulesAttrs);
+let total = rec {
+  toList = map (moduleName: { ${moduleName} = selectedModules.${moduleName}; }) (attrNames selectedModules);
   final = foldl' baselib.deepMerge toList;
 }; in baselib.wrapDebug {
   inherit total activateDebug;
