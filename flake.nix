@@ -13,7 +13,9 @@
     };
   in {
     nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem {
-      modules = baselib.tc types.NixDecl (import ./zeus_olympia);
+      modules = tclib.tc types.NixosDecl (import ./zeus_olympia {
+        lib = pkgslib;
+      });
     };
   };
 }
