@@ -1,6 +1,5 @@
-{ inputs, activateDebug ? false }:
+{ baselib, activateDebug ? false }:
 { selectedModules }:
-with inputs;
 with builtins;
 let total = rec {
   toList = map (moduleName: { ${moduleName} = selectedModules.${moduleName}; }) (attrNames selectedModules);

@@ -11,14 +11,7 @@
         inputs = { inherit pkgslib baselib tclib; };
       };
     };
-    lcllib = baselib.importPairAttrsOfDir {
-      filePath = ./h_run_overcar;
-      inputForImportPairs = {
-        inputs = {
-          inherit baselib pkgslib tclib;
-        };
-      };
-    };
+    lcllib = import ./h_run_overcar { inherit pkgslib baselib; };
     modulesAttrs = baselib.importPairAttrsOfDir {
       filePath = ./zeus_olympia;
       inputForImportPairs = {
@@ -33,9 +26,9 @@
       moduleNameList = import ./emp_triage_can/wranHearst.nix;
     };
     modules = tclib.tc types.NixosDecl (lcllib.constructNixos { inherit selectedModules; });
-    final = nixpkgs.lib.nixosSystem { inherit modules; }; };
+    final = { nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem { inherit modules; }; };
+  };
   in total.baselib.wrapDebug {
     inherit total;
-    activateDebug = true;
   };
 }

@@ -1,5 +1,5 @@
-{ inputs, moduleNameList, modulesAttrs, activateDebug ? false }:
-with inputs;
+{ pkgslibs, baselib }:
+{ moduleNameList, modulesAttrs, activateDebug ? false }:
 with builtins;
 let total = {
   removeUnselected = pkgslib.attrsets.filterAttrs (key: _val: elem key moduleNameList) modulesAttrs;
