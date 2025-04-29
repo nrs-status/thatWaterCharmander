@@ -8,5 +8,6 @@
   "nix"
   "nixpkgs"
   "security"
+  "sieyesShell"
 ]
 

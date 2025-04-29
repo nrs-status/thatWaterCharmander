@@ -1,4 +1,4 @@
-{ inputs }:
+{ lclInputs, system, ... }:
 {
   security = {
     rtkit.enable = true;

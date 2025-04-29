@@ -1,22 +1,29 @@
 {
-  inputs.frontArmToPlane.url = github:nrs-status/frontArmToPlane;
+  inputs = {
+    frontArmToPlane.url = github:nrs-status/frontArmToPlane;
+    homeManagerFlake.url = github:nix-community/home-manager;
+  };
   outputs = inputs: let total = rec {
-    nixpkgs = inputs.frontArmToPlane.inputs.nixpkgs;
-    pkgs = inputs.frontArmToPlane.pkgs;
-    pkgslib = inputs.frontArmToPlane.pkgslib;
-    baselib = inputs.frontArmToPlane.baselib;
-    tclib = inputs.frontArmToPlane.tclib;
-    types = inputs.frontArmToPlane.baselib.mkTypesAttrs {
+    shells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
+    bp = inputs.frontArmToPlane.byproducts.x86_64-linux.w2411;
+    nixpkgs = bp.nixpkgs;
+    pkgs = bp.pkgs;
+    pkgslib = pkgs.lib;
+    baselib = bp.lclInputs.baselib;
+    tclib = bp.lclInputs.tclib;
+    types = baselib.mkTypesAttrs {
       typesdir = ./kaoun_slides_totem;
       importsToPass = {
         inputs = { inherit pkgslib baselib tclib; };
       };
     };
     lcllib = import ./h_run_overcar { inherit pkgslib baselib; };
+    homeManagerFlake = inputs.homeManagerFlake;
     modulesAttrs = baselib.importPairAttrsOfDir {
-      filePath = ./zeus_olympia;
+      filePathForRecursiveFileListing = ./zeus_olympia;
       inputForImportPairs = {
-        inputs = { inherit pkgslib tclib baselib pkgs; };
+        system = "x86_64-linux";
+        inputs = { inherit pkgslib tclib baselib pkgs shells homeManagerFlake; };
       };
     };
     selectedModules = lcllib.mkSelectedModules {
@@ -29,11 +36,16 @@
       type = types.NixosDecl;
       activateDebug = false;
     };
-    nixosSystemInput = { modules = lcllib.modulesAttrsToNixosSystemInput { typecheckNixosDecl = modules; }; };
-    final = { nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem nixosSystemInput; };
+    nixosSystemInput = { modules = [ (lcllib.modulesAttrsToNixosSystemInput { typecheckedNixosDecl = modules; }) ]; };
+    final = { 
+      packages."x86_64-linux".nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem nixosSystemInput;
+      debug = {
+        inherit types;
+      };
+  };
   };
   in total.baselib.wrapDebug {
     inherit total;
-    activateDebug = true;
+    activateDebug = false;
   };
 }

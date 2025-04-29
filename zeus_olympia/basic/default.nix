@@ -1,4 +1,4 @@
-{ inputs }:
+{ lclInputs, system, ... }:
 {
   system.stateVersion = "24.11";
 
@@ -11,7 +11,6 @@
       "audio"
       "video"
     ];
-    shell = inputs.pkgs.fish;
   };
 
   environment = {
@@ -19,7 +18,7 @@
       EDITOR = "nvim";
     };
   };
-  shared.environment.systemPackages = with inputs.pkgs; [
+  shared.environment.systemPackages = with lclInputs.pkgs; [
         curl
         git
         keyd

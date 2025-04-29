@@ -1,4 +1,4 @@
-{ inputs }:
+{ lclInputs, system }:
 {
   hardware.pulseaudio.enable = false;
   services.pipewire = {
@@ -9,7 +9,7 @@
   };
   shared = {
     pulseaudio.enable = false;
-    environment.systemPackages = with inputs.pkgs; [
+    environment.systemPackages = with lclInputs.pkgs; [
       pavucontrol
       pulseaudio
     ];
