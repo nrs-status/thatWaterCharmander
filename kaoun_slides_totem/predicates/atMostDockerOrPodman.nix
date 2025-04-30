@@ -1,5 +1,5 @@
-{ inputs, activateDebug ? false }:
-with inputs;
+{ lclInputs, activateDebug ? false }:
+with lclInputs;
 let 
   hasPath = pkgslib.attrsets.hasAttrByPath;
   dockerPath = [ "virtualisation" "docker" ];

@@ -1,10 +1,10 @@
-{ inputs, activateDebug ? false }:
+{ lclInputs, activateDebug ? false }:
 {
 NixosDecl = {
   typeName = "NixosDecl";
   preds = [
-    (import ./predicates/atMostDockerOrPodman.nix { inherit inputs activateDebug; })
-    (import ./predicates/sharedAttrsAreMarkedAsSuch.nix { inherit inputs activateDebug; })
+    (import ../predicates/atMostDockerOrPodman.nix { inherit lclInputs activateDebug; })
+    (import ../predicates/sharedAttrsAreMarkedAsSuch.nix (with lclInputs; { inherit baselib pkgslib tclib activateDebug; }))
   ];
 };
 }

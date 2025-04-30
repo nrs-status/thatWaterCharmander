@@ -13,11 +13,11 @@ let total = rec {
     };
 
   };
-  hardware = {
+  shared.hardware = {
     graphics.enable = true; #for sway
     cpu.intel.updateMicrocode = true;
   };
-  final = { hardware-configuration = { inherit fileSystems hardware; }; };
+  final = { hardware-configuration = { inherit fileSystems shared; }; };
 }; in baselib.wrapDebug {
   inherit total activateDebug;
 }

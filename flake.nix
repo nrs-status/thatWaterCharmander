@@ -35,7 +35,7 @@
     modules = tclib.typecheck {
       target = totalModule;
       type = types.NixosDecl;
-      activateDebug = false;
+      activateDebug = true;
     };
     nixosSystemInput = { modules = [ (lcllib.modulesAttrsToNixosSystemInput { typecheckedNixosDecl = modules; }) ]; };
     final = { 
