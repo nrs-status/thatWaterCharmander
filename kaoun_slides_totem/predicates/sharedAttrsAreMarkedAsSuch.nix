@@ -2,7 +2,7 @@
 let total = rec {
   final = rec {
     predName = "sharedAttrsAreMarkedAsSuch";
-    function = target: import ./sharedAttrsAreMarkedAsSuch_function.nix { inherit baselib pkgslib; } { inherit target; };
+    function = target: import ./sharedAttrsAreMarkedAsSuch_function.nix { inherit prelib pkgslib; } { inherit target; };
     handler = { target, type }: let
       test = function target;
     in if test.testresult then

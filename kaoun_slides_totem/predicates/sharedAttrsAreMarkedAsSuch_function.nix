@@ -1,4 +1,4 @@
-{ baselib, pkgslib }:
+{ prelib, pkgslib }:
 { target, activateDebug ? false }:
 with builtins;
 let total = rec {
@@ -22,6 +22,6 @@ let total = rec {
     testresult = whatFails == {};
     failures = coerceWhatFailsToString;
   };
-}; in baselib.wrapDebug {
+}; in prelib.wrapDebug {
   inherit total activateDebug;
 }

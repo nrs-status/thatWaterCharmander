@@ -18,6 +18,6 @@ let total = rec {
     cpu.intel.updateMicrocode = true;
   };
   final = { inherit fileSystems shared; };
-}; in baselib.wrapDebug {
+}; in prelib.wrapDebug {
   inherit total activateDebug;
 }
