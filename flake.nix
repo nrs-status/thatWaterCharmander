@@ -5,6 +5,7 @@
   };
   outputs = inputs: let total = rec {
 
+    #init
     shells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
     bp = inputs.frontArmToPlane.byproducts.x86_64-linux.w2411;
     nixpkgs = bp.nixpkgs;
