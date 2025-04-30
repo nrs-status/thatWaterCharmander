@@ -15,12 +15,12 @@
     types = baselib.mkTypesAttrs {
       typesdir = ./kaoun_slides_totem;
       importsToPass = {
-        lclInputs = { inherit pkgslib baselib tclib; };
+        lclInputs = { inherit prelib pkgslib baselib tclib; };
       };
     };
     lcllib = import ./h_run_overcar { inherit prelib pkgslib baselib; };
     homeManagerFlake = inputs.homeManagerFlake;
-    modulesAttrs = baselib.importPairAttrsOfDir {
+    modulesAttrs = prelib.importPairAttrsOfDir {
       filePathForRecursiveFileListing = ./zeus_olympia;
       inputForImportPairs = {
         system = "x86_64-linux";

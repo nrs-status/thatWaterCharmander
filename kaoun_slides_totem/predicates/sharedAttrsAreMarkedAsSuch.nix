@@ -1,4 +1,4 @@
-{ baselib, pkgslib, tclib, activateDebug ? false }:
+{ prelib, baselib, pkgslib, tclib, activateDebug ? false }:
 let total = rec {
   final = rec {
     predName = "sharedAttrsAreMarkedAsSuch";
@@ -10,6 +10,6 @@ let total = rec {
     else
       abort ((tclib.stdTcError { inherit type predName; }) + "; the following attributes are shared yet not marked as such: ${test.failures}");
   };
-}; in baselib.wrapDebug {
+}; in prelib.wrapDebug {
   inherit total activateDebug;
 }
