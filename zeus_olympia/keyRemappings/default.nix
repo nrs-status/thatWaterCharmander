@@ -1,6 +1,6 @@
 { ... }:
 {
-  services.keyd = {
+  shared.services.keyd = {
     enable = true;
     keyboards = {
       default = {

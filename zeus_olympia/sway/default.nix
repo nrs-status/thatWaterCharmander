@@ -6,7 +6,7 @@ let total = rec {
   };
   hm1 = baselib.mkMockHMOutputAndExtractFiles {
     stateVersion = "24.11";
-    inherit homeManagerFlake pkgs;
+    inherit homeManagerFlake pkgs prelib;
     mockHomeExtensions = [ mockHomeExtension1 ];
     attrsOfPathsStartingAtPlaceholderHome = { 
       waybarConfig = /waybar/config;
@@ -24,7 +24,7 @@ let total = rec {
   };
   hm2 = baselib.mkMockHMOutputAndExtractFiles {
     stateVersion = "24.11";
-    inherit homeManagerFlake pkgs;
+    inherit homeManagerFlake pkgs prelib;
     mockHomeExtensions = [ mockHomeExtension2 ];
     attrsOfPathsStartingAtPlaceholderHome = {
       swayConfig = /sway/config;
@@ -58,6 +58,6 @@ let total = rec {
         };
       };
   };
-}; in baselib.wrapDebug {
+}; in prelib.wrapDebug {
   inherit total activateDebug;
 }

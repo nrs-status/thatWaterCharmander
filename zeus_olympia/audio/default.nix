@@ -1,7 +1,6 @@
 { lclInputs, system, ... }:
 {
   shared = {
-    pulseaudio.enable = false;
     environment.systemPackages = with lclInputs.pkgs; [
       pavucontrol
       pulseaudio

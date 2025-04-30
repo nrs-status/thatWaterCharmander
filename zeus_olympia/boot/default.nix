@@ -6,6 +6,7 @@
     supportedFilesystems = ["ntfs"];
     initrd = {
       availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
+      kernelModules = [ "usbhid" "joydev" "xpad" ];
     };
     kernelModules = [ "kvm-intel" ];
   };

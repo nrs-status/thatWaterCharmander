@@ -6,5 +6,5 @@ with lclInputs;
       hostName = pkgslib.mkDefault "wranHearst";
       useDHCP = pkgslib.mkDefault true;
     };
-    services.openssh.enable = true;
+    shared.services.openssh.enable = true;
 }

@@ -14,8 +14,11 @@ let total = rec {
 
   };
   shared.hardware = {
-    graphics.enable = true; #for sway
-    cpu.intel.updateMicrocode = true;
+    graphics = {
+      enable = true; #this is opengl; needed for sway
+      enable32Bit = true;
+    };
+    cpu.intel.updateMicrocode = lclInputs.pkgslib.mkDefault true;
   };
   final = { inherit fileSystems shared; };
 }; in prelib.wrapDebug {
