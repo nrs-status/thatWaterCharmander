@@ -1,5 +1,5 @@
 { ... }:
-{
+{ nix = {
   nix = {
     gc = {
       automatic = true;
@@ -20,4 +20,5 @@
       experimental-features = nix-command flakes
     '';
   };
+};
 }

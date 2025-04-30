@@ -1,5 +1,5 @@
 { lclInputs, system, ... }:
-{
+{ security = {
   security = {
     rtkit.enable = true;
     #passwordless access to rfkill so bluetooth can be toggled
@@ -11,4 +11,5 @@
       }];
     }];
   };
+};
 }

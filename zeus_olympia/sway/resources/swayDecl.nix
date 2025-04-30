@@ -1,4 +1,4 @@
-{ pkgs, pkgslib }: 
+{ waybarCommand, pkgs, pkgslib }: 
 let
   gruvbox = import ./gruvboxColors.nix;
   lockCommand = builtins.concatStringsSep " " (with gruvbox; let
@@ -38,7 +38,7 @@ let
 in {
       enable = true;
       config = rec {
-        bars = [{command = "${pkgs.waybar}/bin/waybar";}];
+        bars = [{command = waybarCommand;}];
 
         colors = {
           background = gruvbox.dark.bg;
@@ -140,4 +140,4 @@ in {
           ];
         };
       };
-};
+}

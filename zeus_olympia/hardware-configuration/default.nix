@@ -1,4 +1,4 @@
-{ lclInputs, system, activateDebug ? false }:
+{ lclInputs, system, activateDebug ? false, ... }:
 with lclInputs;
 let total = rec {
   fileSystems = {
@@ -17,7 +17,7 @@ let total = rec {
     graphics.enable = true; #for sway
     cpu.intel.updateMicrocode = true;
   };
-  final = { inherit fileSystems hardware; };
+  final = { hardware-configuration = { inherit fileSystems hardware; }; };
 }; in baselib.wrapDebug {
   inherit total activateDebug;
 }

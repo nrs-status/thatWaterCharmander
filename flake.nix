@@ -1,7 +1,7 @@
 {
   inputs = {
     frontArmToPlane.url = github:nrs-status/frontArmToPlane;
-    homeManagerFlake.url = github:nix-community/home-manager;
+    homeManagerFlake.url = github:nix-community/home-manager/release-24.11;
   };
   outputs = inputs: let total = rec {
     shells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
@@ -23,7 +23,8 @@
       filePathForRecursiveFileListing = ./zeus_olympia;
       inputForImportPairs = {
         system = "x86_64-linux";
-        inputs = { inherit pkgslib tclib baselib pkgs shells homeManagerFlake; };
+        lclInputs = {inherit pkgslib tclib baselib shells homeManagerFlake;};
+        inherit pkgs;
       };
     };
     selectedModules = lcllib.mkSelectedModules {
@@ -38,14 +39,14 @@
     };
     nixosSystemInput = { modules = [ (lcllib.modulesAttrsToNixosSystemInput { typecheckedNixosDecl = modules; }) ]; };
     final = { 
-      packages."x86_64-linux".nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem nixosSystemInput;
+      nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem nixosSystemInput;
       debug = {
-        inherit types;
+        inherit types modules;
       };
   };
   };
   in total.baselib.wrapDebug {
     inherit total;
-    activateDebug = false;
+    activateDebug = true;
   };
 }

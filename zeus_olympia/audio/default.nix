@@ -1,5 +1,5 @@
-{ lclInputs, system }:
-{
+{ lclInputs, system, ... }:
+{ audio = {
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -14,4 +14,5 @@
       pulseaudio
     ];
   };
+};
 }

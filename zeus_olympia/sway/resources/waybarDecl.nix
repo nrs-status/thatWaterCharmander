@@ -96,6 +96,5 @@
             };
           }
         ];
-                ];
-        style = import ./resources/configExtensions/waybarStyle.nix;
+        style = import ./waybarStyle.nix;
 }

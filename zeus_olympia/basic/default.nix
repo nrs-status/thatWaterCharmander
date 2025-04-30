@@ -1,5 +1,5 @@
 { lclInputs, system, ... }:
-{
+{ basic = {
   system.stateVersion = "24.11";
 
   users.users.sieyes = {
@@ -23,4 +23,5 @@
         git
         keyd
       ];
-}
+    };
+  }

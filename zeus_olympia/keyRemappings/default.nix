@@ -1,5 +1,5 @@
 { ... }:
-{
+{ keyRemappings = {
   shared.services.keyd = {
     enable = true;
     keyboards = {
@@ -43,4 +43,5 @@
       };
     };
   };
+};
 }

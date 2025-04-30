@@ -9,5 +9,8 @@
   "nixpkgs"
   "security"
   "sieyesShell"
+  "sway"
+  "keyRemappings"
+  "sieyesUserPackages"
 ]
 
