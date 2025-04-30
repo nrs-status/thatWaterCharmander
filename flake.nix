@@ -4,10 +4,13 @@
     homeManagerFlake.url = github:nix-community/home-manager/release-24.11;
   };
   outputs = inputs: let total = rec {
+
     shells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
     bp = inputs.frontArmToPlane.byproducts.x86_64-linux.w2411;
     nixpkgs = bp.nixpkgs;
     pkgs = bp.pkgs;
+
+    #lib decls
     pkgslib = pkgs.lib;
     prelib = bp.lclInputs.prelib;
     baselib = bp.lclInputs.baselib;
@@ -19,12 +22,16 @@
       };
     };
     lcllib = import ./h_run_overcar { inherit prelib pkgslib baselib; };
-    homeManagerFlake = inputs.homeManagerFlake;
+
+    #construct nixpkgs.lib.nixosSystem input
     modulesAttrs = prelib.importPairAttrsOfDir {
       filePathForRecursiveFileListing = ./zeus_olympia;
       inputForImportPairs = {
         system = "x86_64-linux";
-        lclInputs = {inherit prelib pkgslib tclib baselib shells homeManagerFlake;};
+        lclInputs = {
+          inherit prelib pkgslib tclib baselib shells;
+          homeManagerFlake = inputs.homeManagerFlake;
+      };
         inherit pkgs;
       };
     };
@@ -32,16 +39,18 @@
       inherit modulesAttrs;
       moduleNameList = import ./emp_triage_can/wranHearst.nix;
     };
-    totalModule = lcllib.constructNixos { inherit selectedModules; };
-    modules = tclib.typecheck {
-      target = totalModule;
+    grabSelectedModulesFromWhole = lcllib.constructNixos { inherit selectedModules; };
+    typecheckedNixosDecl = tclib.typecheck {
+      target = grabSelectedModulesFromWhole;
       type = types.NixosDecl;
       activateDebug = false;
     };
-    finalTransformationIntoModule = lcllib.modulesAttrsToNixosSystemInput { 
-      typecheckedNixosDecl = modules; 
+    makeIntoNixosModule = lcllib.modulesAttrsToNixosSystemInput { 
+      inherit typecheckedNixosDecl; 
       activateDebug = false; 
     };
+
+    #flake output
     final = { 
       nixosConfigurations."wranHearst" = nixpkgs.lib.nixosSystem { modules = [ finalTransformationIntoModule ]; };
       debug = {

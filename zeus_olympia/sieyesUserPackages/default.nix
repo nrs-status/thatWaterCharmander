@@ -2,7 +2,8 @@
 { 
     shared.users.users.sieyes = {
       packages = with pkgs; [ 
-        google-chrome
+        firefox
+        pciutils #for debugging drivers
       ];
     };
 }
