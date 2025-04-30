@@ -9,15 +9,16 @@
     nixpkgs = bp.nixpkgs;
     pkgs = bp.pkgs;
     pkgslib = pkgs.lib;
+    prelib = bp.lclInputs.prelib;
     baselib = bp.lclInputs.baselib;
     tclib = bp.lclInputs.tclib;
     types = baselib.mkTypesAttrs {
       typesdir = ./kaoun_slides_totem;
       importsToPass = {
-        inputs = { inherit pkgslib baselib tclib; };
+        lclInputs = { inherit pkgslib baselib tclib; };
       };
     };
-    lcllib = import ./h_run_overcar { inherit pkgslib baselib; };
+    lcllib = import ./h_run_overcar { inherit prelib pkgslib baselib; };
     homeManagerFlake = inputs.homeManagerFlake;
     modulesAttrs = baselib.importPairAttrsOfDir {
       filePathForRecursiveFileListing = ./zeus_olympia;
@@ -39,14 +40,13 @@
     };
     nixosSystemInput = { modules = [ (lcllib.modulesAttrsToNixosSystemInput { typecheckedNixosDecl = modules; }) ]; };
     final = { 
-      nixosConfigurations.wranHearst = nixpkgs.lib.nixosSystem nixosSystemInput;
+      nixosConfigurations."wranHearst" = nixpkgs.lib.nixosSystem nixosSystemInput;
       debug = {
         inherit types modules;
       };
   };
   };
-  in total.baselib.wrapDebug {
+  in total.prelib.wrapDebug {
     inherit total;
-    activateDebug = true;
   };
 }

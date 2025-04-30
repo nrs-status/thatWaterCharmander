@@ -1,5 +1,5 @@
 { lclInputs, system, ... }:
-{ audio = {
+{
   shared = {
     pulseaudio.enable = false;
     environment.systemPackages = with lclInputs.pkgs; [
@@ -14,5 +14,4 @@
   };
   hardware.pulseaudio.enable = false;
   };
-};
 }

@@ -43,7 +43,6 @@ let total = rec {
     remontoire #list keybindings
   ];
   final = {
-    sway = {
       shared = {
         environment.systemPackages = systemPackages;
         programs = {
@@ -58,7 +57,6 @@ let total = rec {
           };
         };
       };
-    };
   };
 }; in baselib.wrapDebug {
   inherit total activateDebug;

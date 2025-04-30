@@ -1,9 +1,9 @@
-{ baselib, activateDebug ? false }:
+{ prelib, baselib, activateDebug ? false }:
 { selectedModules }:
 with builtins;
 let total = rec {
   toList = map (moduleName: { ${moduleName} = selectedModules.${moduleName}; }) (attrNames selectedModules);
   final = foldl' baselib.deepMerge {} toList;
-}; in baselib.wrapDebug {
+}; in prelib.wrapDebug {
   inherit total activateDebug;
 }

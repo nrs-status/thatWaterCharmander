@@ -17,7 +17,7 @@ let total = rec {
     graphics.enable = true; #for sway
     cpu.intel.updateMicrocode = true;
   };
-  final = { hardware-configuration = { inherit fileSystems shared; }; };
+  final = { inherit fileSystems shared; };
 }; in baselib.wrapDebug {
   inherit total activateDebug;
 }

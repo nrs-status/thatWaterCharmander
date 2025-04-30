@@ -44,14 +44,15 @@
       "inputs": {
         "nixpkgs2411": "nixpkgs2411",
         "nixpkgsUnstable": "nixpkgsUnstable",
-        "nixvimFlake": "nixvimFlake"
+        "nixvimFlake": "nixvimFlake",
+        "prelibBootstrapNixpkgs": "prelibBootstrapNixpkgs"
       },
       "locked": {
-        "lastModified": 1746036757,
-        "narHash": "sha256-cS4qT+UTg9xqdG/kS1yB0/ckhbBrOSuTYBoUcSWgM7o=",
+        "lastModified": 1746046032,
+        "narHash": "sha256-Op/czn1UHOmfoR2dB8uaFhJQ5pruOZCmHYBPIhMnwbw=",
         "owner": "nrs-status",
         "repo": "frontArmToPlane",
-        "rev": "4538fa28f5e115507dda4f63ceb88dcaf163624d",
+        "rev": "2839062c50c73a7116a30b63517ca964188a8081",
         "type": "github"
       },
       "original": {
@@ -214,6 +215,22 @@
       "original": {
         "owner": "NuschtOS",
         "repo": "search",
+        "type": "github"
+      }
+    },
+    "prelibBootstrapNixpkgs": {
+      "locked": {
+        "lastModified": 1745921652,
+        "narHash": "sha256-hEAvEN+y/OQ7wA7+u3bFJwXSe8yoSf2QaOMH3hyTJTQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b000159bba69b0106a42f65e52dbf27f77aca9d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
