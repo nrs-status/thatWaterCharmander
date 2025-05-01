@@ -16,9 +16,9 @@ let total = rec {
   shared.hardware = {
     graphics = {
       enable = true; #this is opengl; needed for sway
-      enable32Bit = true;
     };
     cpu.intel.updateMicrocode = lclInputs.pkgslib.mkDefault true;
+    enableRedistributableFirmware = true; # journalctl -b will report firmware failures otherwise
   };
   final = { inherit fileSystems shared; };
 }; in prelib.wrapDebug {

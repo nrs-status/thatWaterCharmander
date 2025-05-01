@@ -45,6 +45,8 @@ let total = rec {
   final = {
       shared = {
         environment.systemPackages = systemPackages;
+        environment.sessionVariables.SWAYCONFDIR = swayConfigDeriv;
+
         programs = {
           waybar = {
             enable = true;

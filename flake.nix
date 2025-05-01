@@ -46,16 +46,16 @@
       type = types.NixosDecl;
       activateDebug = false;
     };
-    makeIntoNixosModule = lcllib.modulesAttrsToNixosSystemInput { 
+    toNixosModule = lcllib.modulesAttrsToNixosSystemInput { 
       inherit typecheckedNixosDecl; 
       activateDebug = false; 
     };
 
     #flake output
     final = { 
-      nixosConfigurations."wranHearst" = nixpkgs.lib.nixosSystem { modules = [ finalTransformationIntoModule ]; };
+      nixosConfigurations."wranHearst" = nixpkgs.lib.nixosSystem { modules = [ toNixosModule ]; };
       debug = {
-        inherit types modules;
+        inherit types toNixosModule;
       };
   };
   };
