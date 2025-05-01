@@ -1,4 +1,4 @@
-{ prelib, pkgslib }:
+{ prelib, baselib, pkgslib }:
 { target, activateDebug ? false }:
 with builtins;
 let total = rec {
@@ -18,14 +18,14 @@ let total = rec {
   whatFails = mapAttrs (key: val: attrNames (pkgslib.filterAttrs (_comparedModule: val': val' == false) val)) whoFails;
 
   #an attribute that is both within 'shared' and outside
-  hasAttrsInShared = key: if hasAttr "shared" target then elem k (attrNames target.shared) else false;
-  whoHasAttrsInShared = mapAttrs (k: _v: hasAttrsInShared k) target;
+  unlabelModulesAndConcat = foldl' baselib.deepMerge {} (attrValues target);
+  hasAttrsInShared = key: if hasAttr "shared" unlabelModulesAndConcat then elem key (attrNames unlabelModulesAndConcat.shared) else false;
+  whoHasAttrsInShared = mapAttrs (k: _v: hasAttrsInShared k) unlabelModulesAndConcat;
   onlyThoseHavingAttrsInShared = pkgslib.filterAttrs (_k: v: v == true) whoHasAttrsInShared;
 
   final = {
     testresult = (whatFails == {}) && (onlyThoseHavingAttrsInShared == {});
-    failures = "attrs that should be marked shared found in: ${pkgslib.generators.toKeyValue whatFails} \n
-      attrs both tagged and untagged wrt 'shared: ${pkgslib.generators.toKeyValue onlyThoseHavingAttrsInShared}";
+    failures = "1. attrs that should be marked shared found in: ${pkgslib.generators.toKeyValue {} whatFails}; \n2. attrs found both in and outside 'shared' attr: ${toString (attrNames onlyThoseHavingAttrsInShared)}";
   };
 }; in prelib.wrapDebug {
   inherit total activateDebug;

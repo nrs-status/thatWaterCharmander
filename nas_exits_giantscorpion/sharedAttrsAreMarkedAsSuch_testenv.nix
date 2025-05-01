@@ -10,21 +10,22 @@ rec {
   nixpkgs = bp.nixpkgs;
   pkgs = bp.pkgs;
   pkgslib = pkgs.lib;
+  prelib = bp.lclInputs.prelib;
   baselib = bp.lclInputs.baselib;
   tclib = bp.lclInputs.tclib;
   types = baselib.mkTypesAttrs {
     typesdir = ../kaoun_slides_totem;
     importsToPass = {
-      lclInputs = { inherit pkgslib baselib tclib; };
+      lclInputs = { inherit prelib pkgslib baselib tclib; };
     };
   };
-  lcllib = import ../h_run_overcar { inherit pkgslib baselib; };
+  lcllib = import ../h_run_overcar { inherit prelib pkgslib baselib; };
 
-    modulesAttrs = baselib.importPairAttrsOfDir {
+    modulesAttrs = prelib.importPairAttrsOfDir {
       filePathForRecursiveFileListing = ../zeus_olympia;
       inputForImportPairs = {
         system = "x86_64-linux";
-        lclInputs = {inherit pkgslib tclib baselib shells homeManagerFlake;};
+        lclInputs = {inherit prelib pkgslib tclib baselib shells homeManagerFlake;};
         inherit pkgs;
       };
     };
@@ -34,9 +35,9 @@ rec {
     inherit modulesAttrs;
     moduleNameList = import ../emp_triage_can/wranHearst.nix;
   };
-  totalModule = lcllib.constructNixos { inherit selectedModules; };
+  totalModule = lcllib.grabSelectedModulesFromWhole { inherit selectedModules; };
   sharedAttrsAreMarkedAsSuch = import ../kaoun_slides_totem/predicates/sharedAttrsAreMarkedAsSuch_function.nix {
-    inherit baselib pkgslib;
+    inherit pkgslib prelib baselib;
   };
   a = totalModule.audio;
   b = totalModule.keyRemappings;
@@ -47,7 +48,7 @@ rec {
   };
 
   thePredicate = import ../kaoun_slides_totem/predicates/sharedAttrsAreMarkedAsSuch.nix {
-    inherit baselib pkgslib tclib;
+    inherit baselib pkgslib tclib prelib;
   };
   atype = {
     typeName = "mytype";
