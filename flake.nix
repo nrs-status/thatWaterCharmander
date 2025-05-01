@@ -40,9 +40,9 @@
       inherit modulesAttrs;
       moduleNameList = import ./emp_triage_can/wranHearst.nix;
     };
-    grabSelectedModulesFromWhole = lcllib.constructNixos { inherit selectedModules; };
+    grabbedModulesFromWhole = lcllib.grabSelectedModulesFromWhole { inherit selectedModules; };
     typecheckedNixosDecl = tclib.typecheck {
-      target = grabSelectedModulesFromWhole;
+      target = grabbedModulesFromWhole;
       type = types.NixosDecl;
       activateDebug = false;
     };
@@ -61,6 +61,6 @@
   };
   in total.prelib.wrapDebug {
     inherit total;
-    activateDebug = false;
+    activateDebug = true;
   };
 }

@@ -25,7 +25,7 @@ rec {
       filePathForRecursiveFileListing = ../zeus_olympia;
       inputForImportPairs = {
         system = "x86_64-linux";
-        lclInputs = {inherit pkgslib tclib baselib shells prelib homeManagerFlake;};
+        lclInputs = {inherit pkgs pkgslib tclib baselib shells prelib homeManagerFlake;};
         inherit pkgs;
       };
     };
@@ -35,13 +35,13 @@ rec {
     inherit modulesAttrs;
     moduleNameList = import ../emp_triage_can/wranHearst.nix;
   };
-  totalModule = lcllib.constructNixos { inherit selectedModules; };
+  totalModule = lcllib.grabSelectedModulesFromWhole { inherit selectedModules; };
   modules = tclib.typecheck {
     target = totalModule;
     type = types.NixosDecl;
   };
   result = import ../h_run_overcar/modulesAttrsToNixosSystemInput.nix { inherit prelib baselib; } {
     typecheckedNixosDecl = modules;
-    activateDebug = false;
+    activateDebug = true;
   };
 }
