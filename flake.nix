@@ -6,7 +6,8 @@
   outputs = inputs: let total = rec {
 
     #init
-    shells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
+    frontArmToPlanePackages = inputs.frontArmToPlane.packages.x86_64-linux.wUnstable;
+    frontArmToPlaneShells = inputs.frontArmToPlane.devShells.x86_64-linux.w2411;
     bp = inputs.frontArmToPlane.byproducts.x86_64-linux.w2411;
     nixpkgs = bp.nixpkgs;
     pkgs = bp.pkgs;
@@ -30,7 +31,7 @@
       inputForImportPairs = {
         system = "x86_64-linux";
         lclInputs = {
-          inherit prelib pkgslib tclib baselib shells;
+          inherit prelib pkgslib tclib baselib frontArmToPlanePackages frontArmToPlaneShells;
           homeManagerFlake = inputs.homeManagerFlake;
       };
         inherit pkgs;

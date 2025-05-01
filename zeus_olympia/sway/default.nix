@@ -41,11 +41,14 @@ let total = rec {
     mako # notification system developed by swaywm maintainer
     wev #xev analogue
     remontoire #list keybindings
+    killall #for toggling swaybar
   ];
   final = {
       shared = {
         environment.systemPackages = systemPackages;
-        environment.sessionVariables.SWAYCONFDIR = swayConfigDeriv;
+
+      #useful for debug: 
+      #environment.sessionVariables.SWAYCONFDIR = swayConfigDeriv;
 
         programs = {
           waybar = {

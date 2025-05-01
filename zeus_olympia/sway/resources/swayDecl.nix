@@ -37,7 +37,7 @@ let
   ]);
 in {
       enable = true;
-      config = pkgslib.mkOptionDefault (rec {
+      config = rec {
         bars = [{command = waybarCommand;}];
 
         colors = {
@@ -98,10 +98,11 @@ in {
         keybindings = let
           printDir = "~/daguerre_brick/rockwelllcdcalc1972";
         in
-          {
+          (pkgslib.mkOptionDefault {
             "${modifier}+Shift+backslash" = "splith";
             "${modifier}+minus" = "splitv";
-            "${modifier}+z" = "exec killall -SIGUSR1 .waybar-wrapped";
+         "${modifier}+z" = "exec killall -SIGUSR1 .waybar-wrapped";
+
             "${modifier}+p" = "exec --no-startup-id ${pkgs.grim}/bin/grim ${printDir}/$(date +%F-%T).png";
             "Print" = "exec --no-startup-id ${pkgs.grim}/bin/grim ${printDir}/$(date +%F-%T).png && wl-copy < ${printDir}/$(date +%F-%T).png";
             "${modifier}+Print" = "exec --no-startup-id ${pkgs.grim}/bin/grim -g \"$(slurp)\" ${printDir}/snippet_$(date +%F-%T).png && wl-copy < ${printDir}/snippet_$(date +%F-%T).png";
@@ -112,7 +113,7 @@ in {
             "${modifier}+Shift+a" = "focus child";
             #hex color getter/picker; grab color; pipette
             "${modifier}+r" = "exec grim -g \"$(slurp -p)\" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy";
-          };
+          });
 
         startup = [
           {command = "exec swaymsg 'workspace 1; exec firefox' ";}
@@ -139,5 +140,5 @@ in {
             }
           ];
         };
-      });
+      };
 }

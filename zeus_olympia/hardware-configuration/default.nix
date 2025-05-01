@@ -18,7 +18,7 @@ let total = rec {
       enable = true; #this is opengl; needed for sway
     };
     cpu.intel.updateMicrocode = lclInputs.pkgslib.mkDefault true;
-    enableRedistributableFirmware = true; # journalctl -b will report firmware failures otherwise
+    enableRedistributableFirmware = true; # journalctl -b will report firmware failures otherwise; sway will fail to run; the wireless interface will not be recognized
   };
   final = { inherit fileSystems shared; };
 }; in prelib.wrapDebug {
