@@ -61,6 +61,6 @@
   };
   in total.prelib.wrapDebug {
     inherit total;
-    activateDebug = true;
+    activateDebug = false;
   };
 }
