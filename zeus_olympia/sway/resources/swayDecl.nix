@@ -37,7 +37,7 @@ let
   ]);
 in {
       enable = true;
-      config = rec {
+      config = pkgslib.mkOptionDefault (rec {
         bars = [{command = waybarCommand;}];
 
         colors = {
@@ -139,5 +139,5 @@ in {
             }
           ];
         };
-      };
+      });
 }

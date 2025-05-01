@@ -1,4 +1,4 @@
-{ lclInputs, system, ... }:
+{ lclInputs, system, pkgs, ... }:
 {
   system.stateVersion = "24.11";
 
@@ -17,7 +17,8 @@
       variables = {
         EDITOR = "nvim";
       };
-      systemPackages = with lclInputs.pkgs; [
+      systemPackages = with pkgs; [
+	  vim
           curl
           git
           keyd

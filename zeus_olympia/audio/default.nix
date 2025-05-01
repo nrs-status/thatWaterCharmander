@@ -1,7 +1,7 @@
-{ lclInputs, system, ... }:
+{ lclInputs, system, pkgs, ... }:
 {
   shared = {
-    environment.systemPackages = with lclInputs.pkgs; [
+    environment.systemPackages = with pkgs; [
       pavucontrol
       pulseaudio
     ];
