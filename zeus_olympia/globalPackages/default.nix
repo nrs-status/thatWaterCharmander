@@ -1,7 +1,10 @@
 { lclInputs, system, pkgs, ... }: {
 
   shared = {
-    programs.direnv.enable = true;
+    programs.direnv = {
+      enable = true;
+      enableBashIntegration = true;
+    };
     environment.systemPackages = with pkgs; [
       vim
       curl
