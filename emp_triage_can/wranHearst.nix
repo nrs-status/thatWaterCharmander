@@ -1,5 +1,6 @@
 [
   "basic"
+  "globalPackages"
   "audio"
   "boot"
   "bluetooth"

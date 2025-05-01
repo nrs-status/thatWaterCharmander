@@ -6,7 +6,6 @@
 	kitty
 	wofi
 	btop
-	nix-direnv
 	mods
       ]) ++ (with lclInputs.frontArmToPlanePackages; [
 	montezuma_circles_scroll.nixvim.base 
