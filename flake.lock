@@ -48,11 +48,11 @@
         "prelibBootstrapNixpkgs": "prelibBootstrapNixpkgs"
       },
       "locked": {
-        "lastModified": 1746082518,
-        "narHash": "sha256-6GwfQ5+J/20vzH8Zrw0l8CJuX21ZVDaIVviCqiQMIUg=",
+        "lastModified": 1746162493,
+        "narHash": "sha256-nRgLikGnozPyTQPb+aTvJ87oV/W1PCyHih4q52MJJtA=",
         "owner": "nrs-status",
         "repo": "frontArmToPlane",
-        "rev": "328c9b98437c2a114824b24e3f09527756bd03b5",
+        "rev": "36309c84ca00ac8d34814542a711f9562ee6b13b",
         "type": "github"
       },
       "original": {
