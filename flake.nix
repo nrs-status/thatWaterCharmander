@@ -17,9 +17,9 @@
     prelib = bp.lclInputs.prelib;
     baselib = bp.lclInputs.baselib;
     tclib = bp.lclInputs.tclib;
-    types = baselib.mkTypesAttrs {
-      typesdir = ./kaoun_slides_totem;
-      importsToPass = {
+    types = prelib.importPairAttrsOfDir {
+      filePathForRecursiveFileListing = ./kaoun_slides_totem;
+      inputsForImportPairs = {
         lclInputs = { inherit prelib pkgslib baselib tclib; };
       };
     };
@@ -28,7 +28,7 @@
     #construct nixpkgs.lib.nixosSystem input
     modulesAttrs = prelib.importPairAttrsOfDir {
       filePathForRecursiveFileListing = ./zeus_olympia;
-      inputForImportPairs = {
+      inputsForImportPairs = {
         system = "x86_64-linux";
         lclInputs = {
           inherit prelib pkgslib tclib baselib frontArmToPlanePackages frontArmToPlaneShells;
