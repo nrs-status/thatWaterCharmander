@@ -13,5 +13,6 @@
   "sway"
   "keyRemappings"
   "sieyesUserPackages"
+  "virtualisation"
 ]
 
