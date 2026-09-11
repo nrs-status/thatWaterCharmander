@@ -3,11 +3,11 @@ with lclInputs;
 let total = rec {
   fileSystems = {
     "/" = { 
-      device = "/dev/disk/by-uuid/a73a03e7-3159-4656-9e1b-95f92634b4f3";
-      fsType = "ext4";
+      device = "/dev/disk/by-uuid/10d222ac-e7e3-41b2-a99c-e9fabe197b84";
+      fsType = "btrfs";
     };
     "/boot" = { 
-      device = "/dev/disk/by-uuid/1164-B295";
+      device = "/dev/disk/by-uuid/13B6-D3B7";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };

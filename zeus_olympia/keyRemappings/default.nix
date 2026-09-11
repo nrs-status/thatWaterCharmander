@@ -1,10 +1,9 @@
-{ ... }:
-{
+{ ... }: {
   shared.services.keyd = {
     enable = true;
     keyboards = {
       default = {
-        ids = ["*"];
+        ids = [ "*" ];
         settings = {
           main = {
             leftcontrol = "0";

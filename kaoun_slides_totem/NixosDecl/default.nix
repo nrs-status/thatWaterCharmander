@@ -1,8 +1,28 @@
 { lclInputs, activateDebug ? false }:
 {
   typeName = "NixosDecl";
-  preds = [
-    (import ../predicates/atMostDockerOrPodman.nix { inherit lclInputs activateDebug; })
-    (import ../predicates/sharedAttrsAreMarkedAsSuch.nix (with lclInputs; { inherit prelib baselib pkgslib tclib activateDebug; }))
+  spec = [
+    {
+      path = [ ];
+      pred = {
+        predName = "atMostDockerOrPodman";
+        func = target:
+          !(import ../predicates/atMostDockerOrPodman.nix {
+            inherit (lclInputs) pkgslib tclib;
+            inherit activateDebug;
+          }).function target;
+      };
+    }
+    {
+      path = [ ];
+      pred = {
+        predName = "sharedAttrsAreMarkedAsSuch";
+        func = target:
+          (import ../predicates/sharedAttrsAreMarkedAsSuch.nix {
+            inherit (lclInputs) prelib baselib pkgslib tclib;
+            inherit activateDebug;
+          }).function target.testresult;
+      };
+    }
   ];
 }

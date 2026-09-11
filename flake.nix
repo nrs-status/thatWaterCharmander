@@ -39,7 +39,7 @@
     };
     selectedModules = lcllib.mkSelectedModules {
       inherit modulesAttrs;
-      moduleNameList = import ./emp_triage_can/wranHearst.nix;
+      moduleNameList = import ./emp_triage_can/lanchamarcou.nix;
     };
     grabbedModulesFromWhole = lcllib.grabSelectedModulesFromWhole { inherit selectedModules; };
     typecheckedNixosDecl = tclib.typecheck {
@@ -54,7 +54,7 @@
 
     #flake output
     final = { 
-      nixosConfigurations."wranHearst" = nixpkgs.lib.nixosSystem { modules = [ toNixosModule ]; };
+      nixosConfigurations."lanchamarcou" = nixpkgs.lib.nixosSystem { modules = [ toNixosModule ]; };
       debug = {
         inherit types toNixosModule;
       };

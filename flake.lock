@@ -48,11 +48,11 @@
         "peachRampSkateboard": "peachRampSkateboard"
       },
       "locked": {
-        "lastModified": 1747177112,
-        "narHash": "sha256-MItktOfSaDgUQDuoGCui9qi8MH0FGq/SZcuMKlgm5bY=",
+        "lastModified": 1778363469,
+        "narHash": "sha256-fcIf6xnFe9NksV6m7wmTr0bSZcao7mJ/EQ0Jrg7rlas=",
         "owner": "nrs-status",
         "repo": "frontArmToPlane",
-        "rev": "1549a1e12124e5d6d57b46ea337e42152233dd55",
+        "rev": "00a6c4373482128c21243efba8f30b26dcdc91b5",
         "type": "github"
       },
       "original": {

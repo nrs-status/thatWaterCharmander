@@ -1,17 +1,18 @@
 { lclInputs, pkgs, ... }: {
   shared.users.users.sieyes = {
     packages = (with pkgs; [
-      okular
-      qpdf
+      okular #ebook/pdf/djvu/etc. reader
       unzip
-      bottles
+      unrar
+      bottles #games
       google-chrome
       firefox
       kitty
-      wofi
+      wofi #launcher/menu
       btop
       mods
-      qimgv # img viewer
+      qimgv #img viewer
+      vlc
     ]) ++ (with lclInputs.frontArmToPlanePackages; [
       montezuma_circles_scroll.nixvim.base
       alaric_kicksdown_messi

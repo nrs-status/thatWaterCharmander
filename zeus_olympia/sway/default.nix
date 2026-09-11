@@ -19,7 +19,7 @@ let total = rec {
   waybarCommand = "${pkgs.waybar}/bin/waybar --config ${waybarConfigDeriv}";
   mockHomeExtension2 = {
     wayland.windowManager.sway = import ./resources/swayDecl.nix {
-      inherit pkgslib pkgs waybarCommand;
+      inherit pkgs waybarCommand;
     };
   };
   hm2 = baselib.mkMockHMOutputAndExtractFiles {
